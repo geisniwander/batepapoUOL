@@ -1,28 +1,52 @@
+const feed = document.querySelector(".feed");
+const login = document.querySelector(".login");
 const chat = document.querySelector(".chat");
-let user={name:''};
+const inputUser = document.querySelector(".name");
+const inputMessage = document.querySelector(".textMessage");
+let u=0;
+let user={name:""};
+
+inputUser.addEventListener("keyup", ({key}) => {
+    if (key === "Enter") {
+        registerUser();
+    }
+})
+
+inputMessage.addEventListener("keyup", ({key}) => {
+    if (key === "Enter") {
+        sendMessage();
+    }
+})
 
 function registerUser(){
-    user.name = prompt("Digite seu nome");
+    const nameUser = document.querySelector(".name").value;
+    user.name = nameUser;
     const promise = axios.post('https://mock-api.driven.com.br/api/v6/uol/participants',user);
+    u=1;
     promise.then(getMessage);
     promise.catch(registerUser);
 }
 
 function keepConnected(){
-    const promise = axios.post('https://mock-api.driven.com.br/api/v6/uol/status',user);
-    promise.then(getMessage);
-    promise.catch(registerUser);
+    if(u!==0){
+        const promise = axios.post('https://mock-api.driven.com.br/api/v6/uol/status',user);
+        promise.then(getMessage);
+        promise.catch(registerUser);
+    }
 }
 
 function sendMessage(){
     const message = document.querySelector(".textMessage").value;
     const messageObj = {from:user.name, to:"Todos",text:message,type:"message"};
     const promise = axios.post('https://mock-api.driven.com.br/api/v6/uol/messages',messageObj);
+    document.querySelector(".textMessage").value = "";
     promise.then(getMessage);
     promise.catch(registerUser);
 }
 
 function getMessage(){
+    login.classList.add("escondido");
+    feed.classList.remove("escondido");
     const promise = axios.get('https://mock-api.driven.com.br/api/v6/uol/messages');
     promise.then(renderMessages,promise);
 }
@@ -33,23 +57,18 @@ function renderMessages(newMessages){
     for(let i=1; i<objects.length; i++){
         let message = {from: objects[i].from, to: objects[i].to, text: objects[i].text, type:objects[i].type, time:objects[i].time}
 
-        if(message.type==="status"){
-            const msg = (`<li class="status msg${i}">(${message.time}) <span>${message.from}</span> ${message.text}</li>`);
-            chat.innerHTML+= msg;
-        }
-        else if(message.type==="message" & message.to==="Todos"){
-            const msg =(`<li class="message msg${i}">(${message.time}) <span>${message.from}</span> para <span>${message.to}:</span> ${message.text}</li>`);
-            chat.innerHTML+=msg;
-            }
-        else{
-            const msg =(`<li class="private msg${i}">(${message.time}) <span>${message.from}</span> para <span>${message.to}:</span> ${message.text}</li>`);
-            chat.innerHTML+= msg;
-        }
+        if (message.type==="status")
+            chat.innerHTML += (`<li class="status msg${i}"> <span class="time">(${message.time})</span>  <span class="from">${message.from}</span> ${message.text}</li>`);
+        else if (message.type==="message" && message.to==="Todos")
+            chat.innerHTML += (`<li class="message msg${i}"> <span class="time">(${message.time})</span>  <span class="from">${message.from}</span>  para  <span class="to">${message.to}:</span> ${message.text}</li>`);
+        else
+            chat.innerHTML += (`<li class="private msg${i}"> <span class="time">(${message.time})</span>  <span class="from">${message.from}</span>  para  <span class="to">${message.to}:</span> ${message.text}</li>`);
         const last = document.querySelector(`.msg${i}`);
         last.scrollIntoView();
     }
 }
 
-registerUser();
 setInterval(keepConnected,3000);
+
+
 
