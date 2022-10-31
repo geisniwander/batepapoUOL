@@ -1,9 +1,9 @@
 *{
     box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
 }
 body{
     background-color: #F3F3F3;
-    font-family: 'Roboto', sans-serif;
 }
 .feed{
     z-index: 5;

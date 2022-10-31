@@ -17,7 +17,6 @@ inputMessage.addEventListener("keyup", ({key}) => {
         sendMessage();
     }
 })
-
 function reload(){
     window.location.reload();
 }
@@ -25,19 +24,19 @@ function registerUser(){
     const nameUser = document.querySelector(".name").value;
     user.name = nameUser;
     const promise = axios.post('https://mock-api.driven.com.br/api/v6/uol/participants',user);
-    u=1;
     login.classList.add("hidden");
     spinner.classList.remove("hidden");
     promise.then(getMessage);
     promise.catch(reload);
+    u=1;
+    setInterval(keepConnected,5000);
+    setInterval(getMessage,3000);
 }
 function keepConnected(){
     if(u!==0){
         const promise = axios.post('https://mock-api.driven.com.br/api/v6/uol/status',user);
-        promise.catch(reload);
+       promise.catch(reload);
     }
-    else
-        reload();
 }
 function sendMessage(){
     const message = document.querySelector(".textMessage").value;
@@ -52,9 +51,8 @@ function getMessage(){
         feed.classList.remove("hidden");
         const promise = axios.get('https://mock-api.driven.com.br/api/v6/uol/messages');
         promise.then(renderMessages,promise);
+        promise.catch(reload);
     }
-    else
-        reload();
 }
 function renderMessages(newMessages){
     const objects = newMessages.data;
@@ -72,8 +70,7 @@ function renderMessages(newMessages){
         last.scrollIntoView();
     }
 }
-setInterval(keepConnected,5000);
-setInterval(getMessage,3000);
+
 
 
 
