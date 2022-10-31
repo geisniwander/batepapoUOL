@@ -4,27 +4,39 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,300;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/style.css">
     <title>Bate-Papo UOL</title>
 </head>
 <body>
-    <div class="login">
-        <img src="./images/logo.png" alt="logo_uol">
-        <input type="text" placeholder="Digite seu nome" class="name">
-        <button class="enter" onclick="registerUser()">Entrar</button>
-    </div>
-    <div class="feed escondido">
+
+        <div class="back hidden">
+            <img src="./images/logo.png" alt="logo_uol" class="logo-start">
+            <div class="spinner "></div>
+            <h1>Entrando...</h1>
+        </div>
+        <div class=" login">
+            <img src="./images/logo.png" alt="logo_uol" class="logo-start">
+            <input type="text" placeholder="Digite seu nome" class="name">
+            <button class="enter" onclick="registerUser()">Entrar</button>
+        </div>
+
+    <div class="feed hidden">
         <nav>
             <img src="./images/logo.png" alt="logo_uol">
             <ion-icon name="people"></ion-icon>
         </nav>
-        <section class="container">
-            <ul class="chat">
-    
-            </ul>
-        </section>
-        <footer class="entrada">
+        <div class="hid">
+            <section class="container">
+                <ul class="chat">
+                </ul>
+            </section>
+        </div>
+
+        <footer class="msg">
             <input type="text" placeholder="Escreva aqui..." class="textMessage">
             <ion-icon name="paper-plane-outline" onclick="sendMessage()"></ion-icon>
         </footer>

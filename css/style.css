@@ -3,13 +3,18 @@
 }
 body{
     background-color: #F3F3F3;
+    font-family: 'Roboto', sans-serif;
+}
+.feed{
+    z-index: 5;
 }
 nav{
+    background-color: white;
     width: 100%;
-    height: 75px;
+    height: 10vh;
     display: flex;
     justify-content: space-between;
-    box-shadow: 5px 5px 20px 2px #888888;
+    box-shadow: 5px 2px 15px 2px #e4e4e4;
     padding: 3%;
     position: fixed;
     top: 0;
@@ -19,21 +24,9 @@ nav{
 nav ion-icon{
     font-size: 50px;
 }
-.container{
-    background-color: #F3F3F3;
-    width: 100%;
-    height: 75%;
-    position: fixed;
-    top: 50%;
-    left: 0%;
-    transform: translate(0%, -50%);
-    left: 0;
-    overflow-y: scroll;
-    overflow-x:  hidden;
-}
 footer{
     width: 100%;
-    height: 80px;
+    height: 11vh;
     position: fixed;
     bottom: 0;
     left: 0;
@@ -41,8 +34,8 @@ footer{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 2%;
-    box-shadow: 5px 5px 20px 2px #888888;
+    padding: 3%;
+    box-shadow: 5px 2px 15px 2px #e4e4e4;
     background-color: white;
 }
 footer input{
@@ -53,12 +46,74 @@ footer input{
 footer ion-icon{
     font-size: 50px;
 }
-
+.login{
+    background-color: white;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.logo-start{
+    width: 40vw;
+    margin-top: 30%;
+    margin-bottom: 25%;
+}
+.name{
+    width: 70vw;
+    height: 6vh;
+    border: 1px solid rgb(212, 212, 212);
+    text-align: center;
+    margin-bottom: 5%;
+    border-radius: 3px;
+}
+.enter{
+    width: 25vw;
+    height: 50px;
+    border-radius: 10px;
+    border: none;
+}
+.back{
+    width: 100%;
+    height: 100vh;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items:center ;
+    z-index: 5;
+    font-size: 19px;
+}
+.hid{
+    width: 100%;
+    height: 100vh;
+    background-color: #F3F3F3;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 4;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.container{
+    width: 100%;
+    height: 75vh;
+    z-index: 5;
+    overflow-y: scroll;
+    overflow-x:  hidden;
+}
+.textMessage{
+    font-size: 18px;
+    font-weight: 400;
+}
 .from,.to{
     font-weight: bold;
 }
 ul{
     max-width: 100%;
+    background-color: #F3F3F3;
+    z-index: 5;
 }
 li{
     max-width: 100%;
@@ -66,6 +121,7 @@ li{
     margin-top: 1%;
     margin-bottom: 1%;
     background-color: white;
+    text-justify: inter-word;
     word-wrap:break-word;
 }
 .private{
@@ -78,37 +134,32 @@ li{
 .time{
  color: gray;
 }
-.escondido{
+.container::-webkit-scrollbar{
+    display: none;
+}
+.msg ::placeholder{
+    font-size: 18px;
+    font-weight: 400;
+    font-style: italic;
+}
+input:focus{
+    outline: 0;
+}
+.spinner {
+    border: 8px solid rgba(0, 0, 0, 0.1);
+    border-left-color: #000000;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    animation: spin 1s linear infinite;
+    margin-bottom: 5%;
+}
+@keyframes spin {
+to {
+    transform: rotate(360deg);
+}
+}
+.hidden{
     display: none;
     z-index: -5;
-}
-.login{
-    background-color: white;
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-.login img{
-    width: 50%;
-    margin-bottom: 5%;
-}
-.name{
-    width: 80%;
-    height: 50px;
-    border: 1px solid gray;
-    text-align: center;
-    margin-bottom: 5%;
-    border-radius: 3px;
-}
-.enter{
-    width: 30%;
-    height: 50px;
-    border-radius: 10px;
-    border: none;
-}
-.feed{
-    z-index: 5;
 }
