@@ -61,11 +61,11 @@ function renderMessages(newMessages){
         let message = {from: objects[i].from, to: objects[i].to, text: objects[i].text, type:objects[i].type, time:objects[i].time}
 
         if(message.type==="status")
-            chat.innerHTML += (`<li class="status msg${i}" data-test="message"> <span class="time">(${message.time})</span> <span class="from">${message.from}</span> ${message.text}</li>`);
+            chat.innerHTML += (`<li data-test="message" class="status msg${i}" > <span class="time">(${message.time})</span> <span class="from">${message.from}</span> ${message.text}</li>`);
         else if (message.type==="message" && message.to==="Todos")
-            chat.innerHTML += (`<li class="message msg${i}" data-test="message"> <span class="time">(${message.time})</span> <span class="from">${message.from}</span>  para  <span class="to">${message.to}:</span> ${message.text}</li>`);
+            chat.innerHTML += (`<li data-test="message" class="message msg${i}"> <span class="time">(${message.time})</span> <span class="from">${message.from}</span>  para  <span class="to">${message.to}:</span> ${message.text}</li>`);
         else
-            chat.innerHTML += (`<li class="private msg${i}" data-test="message"> <span class="time">(${message.time})</span> <span class="from">${message.from}</span>  para  <span class="to">${message.to}:</span> ${message.text}</li>`);
+            chat.innerHTML += (`<li data-test="message" class="private msg${i}"> <span class="time">(${message.time})</span> <span class="from">${message.from}</span>  para  <span class="to">${message.to}:</span> ${message.text}</li>`);
         const last = document.querySelector(`.msg${i}`);
         last.scrollIntoView();
     }
