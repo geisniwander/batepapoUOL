@@ -19,8 +19,8 @@
     </div>
     <div class=" login">
         <img src="./images/logo.png" alt="logo_uol" class="logo-start">
-        <input type="text" placeholder="Digite seu nome" class="name" data-identifier="enter-name">
-        <button class="enter" onclick="registerUser()" data-identifier="start">Entrar</button>
+        <input type="text" placeholder="Digite seu nome" class="name" data-test="input-name">
+        <button class="enter" onclick="registerUser()" data-test="send-name">Entrar</button>
     </div>
 
     <div class="feed hidden">
@@ -36,8 +36,8 @@
         </div>
 
         <footer class="msg">
-            <input type="text" placeholder="Escreva aqui..." class="textMessage">
-            <ion-icon name="paper-plane-outline" onclick="sendMessage()"></ion-icon>
+            <input type="text" placeholder="Escreva aqui..." class="textMessage" data-test="input-message">
+            <ion-icon name="paper-plane-outline" onclick="sendMessage()" data-test="send-message"></ion-icon>
         </footer>
     </div>
 
